@@ -53,4 +53,24 @@ class DbHelper {
         await db.rawQuery('SELECT * FROM $tblTodo order by $colPriority ASC');
     return result;
   }
+
+  Future<int> getCount() async {
+    Database db = await this.db;
+    var result = Sqflite.firstIntValue(
+        await db.rawQuery('SELECT count (*) from $tblTodo'));
+    return result;
+  }
+
+  Future<int> updateTodo(Todo todo) async {
+    var db = await this.db;
+    var result = await db.update(tblTodo, todo.toMap(),
+        where: "$colId = ?", whereArgs: [todo.id]);
+    return result;
+  }
+
+  Future<int> deleteTodo(int id) async {
+    var db = await this.db;
+    var result = await db.rawDelete('DELETE FROM $tblTodo WHERE $colId = $id');
+    return result;
+  }
 }
