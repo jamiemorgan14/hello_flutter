@@ -6,45 +6,27 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      theme: ThemeData(
-        brightness: Brightness.dark,
-        primaryColor: Color(0xff607D8B),
-        accentColor: Colors.white,
-        textTheme: TextTheme(
-          bodyText2: TextStyle(
-            fontSize: 24,
-            fontStyle: FontStyle.italic,
-          ),
-        ),
-      ),
+      title: 'Container App',
       home: Scaffold(
         appBar: AppBar(
-          title: Text('Building Layouts with Flutter'),
+          title: Text('Container'),
         ),
-        body: Center(
-          child: Text(
-            'Hello Flutter Layouts',
-            style: TextStyle(fontSize: 24),
+        body: Container(
+          margin: EdgeInsets.all(50.0),
+          width: 400.0,
+          height: 500.0,
+          decoration: BoxDecoration(
+            image: DecorationImage(
+              image: NetworkImage('http://bit.ly/flutter_tiger'),
+              repeat: ImageRepeat.repeatX,
+            ),
+            color: Colors.orange,
+            shape: BoxShape.rectangle,
+            borderRadius: BorderRadius.all(
+              Radius.circular(20.0),
+            ),
           ),
         ),
-        floatingActionButton: FloatingActionButton(
-          child: Icon(Icons.lightbulb_outline),
-          onPressed: () => print('You Rang?'),
-        ),
-        persistentFooterButtons: <Widget>[
-          IconButton(
-            icon: Icon(Icons.add_comment),
-            onPressed: () {},
-          ),
-          IconButton(
-            icon: Icon(Icons.add_alarm),
-            onPressed: () {},
-          ),
-          IconButton(
-            icon: Icon(Icons.add_location),
-            onPressed: () {},
-          ),
-        ],
       ),
     );
   }
